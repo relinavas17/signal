@@ -138,37 +138,14 @@ Search and rank candidates using natural language.
 ]
 ```
 
-### POST /api/shortlist
 
-Toggle candidate shortlist status.
-
-**Request:**
-```json
-{
-  "candidate_id": "C-123",
-  "shortlisted": true
-}
-```
-
-### POST /api/reject
-
-Reject a candidate.
-
-**Request:**
-```json
-{
-  "candidate_id": "C-123"
-}
-```
 
 ## Scoring Algorithm
 
 The system uses a multi-factor scoring approach:
 
 1. **Intent Score**: `intent_norm = min(intent_count / 5, 1.0)`
-2. **Fit Score**: Cosine similarity between resume and query embeddings
-3. **Final Score**: `0.5 * intent_norm + 0.5 * fit_score`
-4. **Relevance**: `0.6 * semantic_similarity + 0.4 * final_score`
+4. **Relevance**: `keyword matching`
 5. **Term Boosts**: +0.05 per matched term (max +0.1 total)
 
 ## Optional: Resume Analyzer Agent
